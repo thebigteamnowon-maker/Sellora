@@ -3,289 +3,337 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SELLORA | Business Intelligence</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#09090f;color:#f5f3ff;font-family:Arial,sans-serif}
-button,input,select,textarea{font:inherit}
-.app{display:flex;min-height:100vh}
-.sidebar{width:245px;background:#100f19;border-right:1px solid #292538;padding:24px 15px;flex-shrink:0}
-.logo{font-size:25px;font-weight:900;letter-spacing:3px;padding:8px 10px 30px}
-.logo span{color:#a78bfa}
-.label{font-size:10px;color:#77738b;letter-spacing:2px;margin:15px 10px}
-.nav{display:block;width:100%;text-align:left;padding:13px 12px;margin:3px 0;border:0;border-radius:9px;background:none;color:#aaa5bb;cursor:pointer;font-size:13px}
-.nav:hover,.nav.active{background:#28203f;color:#c4b5fd}
-.main{flex:1;min-width:0;padding:30px}
-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;gap:12px}
-.eyebrow{color:#b49af5;font-size:10px;letter-spacing:2px;margin-bottom:9px}
-h1{font-size:29px}
-.sub{color:#89859b;font-size:13px;margin-top:8px}
-.profile{padding:11px;border:1px solid #302b40;border-radius:9px;color:#c4b5fd;font-size:12px}
-.view{display:none}
-.view.active{display:block}
-.welcome,.panel,.card{background:#14121e;border:1px solid #302b40;border-radius:14px;padding:23px}
-.welcome{background:linear-gradient(120deg,#292044,#14121e);margin-bottom:25px}
-.welcome h2{font-size:23px;margin:10px 0}
-p{color:#aaa5bb;font-size:13px;line-height:1.7}
-.status{display:inline-block;color:#c4b5fd;background:#302449;padding:7px 11px;border-radius:20px;font-size:10px;margin-top:15px}
-.section{font-size:16px;margin:27px 0 14px}
-.stats,.modules{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-.card small{color:#aaa5bb;font-size:11px}
-.card h3{font-size:25px;margin-top:12px}
-.card p{font-size:11px;margin-top:7px}
-.module{background:#14121e;border:1px solid #302b40;border-radius:12px;padding:18px;cursor:pointer}
-.module:hover{border-color:#a78bfa}
-.module h3{font-size:14px;margin:12px 0 8px}
-.module p{font-size:11px}
-.module .icon{font-size:23px}
-.tag{font-size:10px;color:#b49af5;display:block;margin-top:13px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:20px}
-.field{display:flex;flex-direction:column;gap:8px}
-.field label{font-size:12px;color:#c4b5fd}
-.field input,.field select,.field textarea{width:100%;background:#0d0c14;color:white;border:1px solid #39334c;border-radius:8px;padding:13px;outline:none}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:#a78bfa}
-.field textarea{min-height:90px;resize:vertical}
-.full{grid-column:1/-1}
-.action{border:0;border-radius:8px;background:#8865cf;color:white;padding:13px 19px;cursor:pointer}
-.action:hover{background:#a080e8}
-.result{background:#0d0c14;border:1px solid #39334c;border-radius:10px;padding:18px;margin-top:20px;display:none}
-.result h3{font-size:14px;margin-bottom:12px}
-.result-text{white-space:pre-wrap;color:#ddd6ef;font-size:13px;line-height:1.8}
-.secondary{background:#28213c;color:#d8c9ff;border:1px solid #51416f;padding:10px 14px;border-radius:8px;margin-top:15px;cursor:pointer}
-.notice{font-size:11px;color:#918aa5;margin-top:12px}
-@media(max-width:750px){
-.app{display:block}
-.sidebar{width:100%;padding:12px;border-right:0;border-bottom:1px solid #292538}
-.logo{padding:8px 10px 14px}
-.label{display:none}
-nav{display:flex;overflow-x:auto;gap:5px}
-.nav{width:auto;white-space:nowrap}
-.main{padding:20px 13px}
-.modules{grid-template-columns:repeat(2,1fr)}
+:root {
+  --bg:#090910;
+  --panel:#12121d;
+  --panel2:#191927;
+  --text:#f5f3ff;
+  --muted:#9291a8;
+  --accent:#a78bfa;
+  --border:#29283b;
 }
-@media(max-width:420px){
-.form-grid{grid-template-columns:1fr}
-.full{grid-column:auto}
-.stats{grid-template-columns:1fr 1fr}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+}
+.layout{display:flex;min-height:100vh}
+.sidebar{
+  width:245px;
+  background:#10101a;
+  border-right:1px solid var(--border);
+  padding:25px 16px;
+  flex-shrink:0;
+}
+.logo{font-size:25px;font-weight:900;letter-spacing:3px;margin-bottom:8px}
+.logo span{color:var(--accent)}
+.tagline{font-size:11px;color:var(--muted);margin-bottom:35px}
+.nav-label{font-size:10px;color:var(--muted);margin:20px 10px 10px;letter-spacing:1px}
+.nav-btn{
+  width:100%;padding:13px 12px;margin:3px 0;
+  text-align:left;border:0;border-radius:9px;
+  color:#bdbbd0;background:transparent;cursor:pointer;
+}
+.nav-btn:hover,.nav-btn.active{background:#29223d;color:white}
+main{flex:1;padding:35px;min-width:0}
+.topline{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}
+h1{font-size:28px;margin:0 0 8px}
+.subtitle{color:var(--muted);font-size:14px}
+.status{color:#86efac;font-size:11px}
+.view{display:none;margin-top:30px}
+.view.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+.card{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:14px;padding:21px;
+}
+.card h3{margin:0 0 12px;font-size:16px}
+.card p{color:var(--muted);font-size:13px;line-height:1.6}
+.metric{font-size:26px;font-weight:bold;color:var(--accent)}
+.section-title{margin:0 0 16px;font-size:19px}
+input,textarea,select{
+  width:100%;padding:13px;margin:7px 0 14px;
+  border:1px solid var(--border);border-radius:8px;
+  background:#0d0d17;color:white;font:inherit;
+}
+textarea{min-height:110px;resize:vertical}
+label{font-size:12px;color:#c7c5d8}
+button.primary{
+  background:var(--accent);color:#100d1b;
+  border:0;border-radius:8px;padding:13px 18px;
+  font-weight:bold;cursor:pointer;
+}
+button.primary:hover{opacity:.85}
+.output{
+  margin-top:18px;padding:18px;border-radius:10px;
+  background:#0d0d17;border:1px solid var(--border);
+  line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;
+}
+.small{font-size:11px;color:var(--muted)}
+.chat-box{
+  height:330px;overflow-y:auto;padding:15px;
+  background:#0d0d17;border:1px solid var(--border);
+  border-radius:12px;margin-bottom:12px;
+}
+.message{
+  padding:12px 14px;border-radius:10px;
+  margin:9px 0;max-width:90%;font-size:14px;line-height:1.6;
+  white-space:pre-wrap;overflow-wrap:anywhere;
+}
+.assistant{background:#242038}
+.user{background:#49377b;margin-left:auto}
+.chat-row{display:flex;gap:9px;align-items:stretch}
+.chat-row input{margin:0;min-width:0}
+.chat-row button{flex-shrink:0}
+@media(max-width:700px){
+ .layout{display:block}
+ .sidebar{width:100%;padding:17px}
+ .sidebar .tagline{margin-bottom:12px}
+ .nav-label{margin-top:12px}
+ main{padding:22px 15px}
+ .nav-btn{width:auto;margin:3px}
+ .chat-row{flex-wrap:wrap}
+ .chat-row button{width:100%}
 }
 </style>
 </head>
 <body>
-<div class="app">
+<div class="layout">
 <aside class="sidebar">
-<div class="logo">SELL<span>ORA</span></div>
-<div class="label">WORKSPACE</div>
-<nav>
-<button class="nav active" data-view="dashboard">◈ Dashboard</button>
-<button class="nav" data-view="assistant">✧ AI Assistant</button>
-<button class="nav" data-view="marketing">◉ Marketing Studio</button>
-<button class="nav" data-view="finance">▤ Finance Centre</button>
-<button class="nav" data-view="customers">♧ Customer Manager</button>
-<button class="nav" data-view="automation">⌘ Automation Hub</button>
-<button class="nav" data-view="analytics">◫ Analytics</button>
-</nav>
+  <div class="logo">SELL<span>ORA</span></div>
+  <div class="tagline">INTELLIGENT BUSINESS PLATFORM</div>
+
+  <div class="nav-label">WORKSPACE</div>
+  <button class="nav-btn active" onclick="openView('dashboard',this)">◈ Dashboard</button>
+  <button class="nav-btn" onclick="openView('assistant',this)">✦ AI Business Assistant</button>
+  <button class="nav-btn" onclick="openView('marketing',this)">◉ Marketing Studio</button>
+
+  <div class="nav-label">COMING NEXT</div>
+  <button class="nav-btn" onclick="openView('finance',this)">▤ Finance Centre</button>
+  <button class="nav-btn" onclick="openView('customers',this)">♧ Customer Manager</button>
+  <button class="nav-btn" onclick="openView('automation',this)">⚙ Automation Hub</button>
+  <button class="nav-btn" onclick="openView('analytics',this)">▥ Analytics Dashboard</button>
+  <p class="small">SELLORA · Version 0.3</p>
 </aside>
 
-<main class="main">
-<header>
-<div>
-<div class="eyebrow">SELLORA BUSINESS INTELLIGENCE</div>
-<h1 id="heading">Dashboard</h1>
-<p class="sub">Your business, intelligently organised.</p>
-</div>
-<div class="profile">ST · Founder</div>
-</header>
-
-<section id="dashboard" class="view active">
-<div class="welcome">
-<div class="eyebrow">WELCOME TO SELLORA</div>
-<h2>Think bigger. Operate smarter.</h2>
-<p>Your intelligent business workspace starts here. Explore your tools and grow your business.</p>
-<span class="status">● DEVELOPMENT VERSION 0.2</span>
-</div>
-<h2 class="section">Business overview</h2>
-<div class="stats">
-<div class="card"><small>Revenue tracked</small><h3>—</h3><p>Finance connection pending</p></div>
-<div class="card"><small>Customers</small><h3>—</h3><p>Customer database pending</p></div>
-<div class="card"><small>Campaigns created</small><h3 id="campaignCount">0</h3><p>Marketing Studio</p></div>
-</div>
-<h2 class="section">Business tools</h2>
-<div class="modules">
-<div class="module" data-open="assistant"><div class="icon">✧</div><h3>AI Business Assistant</h3><p>Your intelligent business support.</p><span class="tag">EXPLORE →</span></div>
-<div class="module" data-open="marketing"><div class="icon">◉</div><h3>Marketing Studio</h3><p>Create marketing campaigns.</p><span class="tag">OPEN STUDIO →</span></div>
-<div class="module" data-open="finance"><div class="icon">▤</div><h3>Finance Centre</h3><p>Organise business finances.</p><span class="tag">EXPLORE →</span></div>
-<div class="module" data-open="customers"><div class="icon">♧</div><h3>Customer Manager</h3><p>Manage customer relationships.</p><span class="tag">EXPLORE →</span></div>
-<div class="module" data-open="automation"><div class="icon">⌘</div><h3>Automation Hub</h3><p>Build business workflows.</p><span class="tag">EXPLORE →</span></div>
-<div class="module" data-open="analytics"><div class="icon">◫</div><h3>Analytics Dashboard</h3><p>Understand business performance.</p><span class="tag">EXPLORE →</span></div>
-</div>
-</section>
-
-<section id="marketing" class="view">
-<div class="panel">
-<div class="eyebrow">SELLORA CREATIVE INTELLIGENCE</div>
-<h2>Marketing Studio</h2>
-<p>Create promotional campaigns for your business in seconds.</p>
-<span class="status">● CAMPAIGN GENERATOR ACTIVE</span>
-
-<div class="form-grid">
-<div class="field full">
-<label>Business or product name</label>
-<input id="business" placeholder="e.g. My Fashion Brand">
-</div>
-<div class="field">
-<label>Social media platform</label>
-<select id="platform">
-<option>Instagram</option>
-<option>TikTok</option>
-<option>Facebook</option>
-<option>LinkedIn</option>
-<option>X</option>
-</select>
-</div>
-<div class="field">
-<label>Campaign objective</label>
-<select id="objective">
-<option>Promote a product</option>
-<option>Increase brand awareness</option>
-<option>Announce a launch</option>
-<option>Attract new customers</option>
-<option>Promote a special offer</option>
-</select>
-</div>
-<div class="field">
-<label>Target audience</label>
-<input id="audience" placeholder="e.g. Young entrepreneurs">
-</div>
-<div class="field">
-<label>Brand personality</label>
-<select id="tone">
-<option>Professional</option>
-<option>Luxury</option>
-<option>Friendly</option>
-<option>Energetic</option>
-<option>Creative</option>
-</select>
-</div>
-<div class="field full">
-<label>Describe your product or service</label>
-<textarea id="product" placeholder="What are you promoting? What makes it special?"></textarea>
-</div>
-<div class="full">
-<button class="action" id="generate">✧ Generate campaign</button>
-</div>
+<main>
+<div class="topline">
+  <div>
+    <h1 id="pageTitle">Business Dashboard</h1>
+    <div class="subtitle">Your business command centre.</div>
+  </div>
+  <div class="status">● SYSTEM ONLINE</div>
 </div>
 
-<div class="result" id="result">
-<h3>Your marketing campaign</h3>
-<div class="result-text" id="output"></div>
-<button class="secondary" id="copy">Copy campaign</button>
-</div>
-<p class="notice">This first version uses built-in templates. AI integration will be added in a later development stage.</p>
-</div>
+<section class="view active" id="dashboard">
+  <h2 class="section-title">Welcome to SELLORA</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>✦ AI Business Assistant</h3>
+      <p>Get business advice, develop ideas and explore solutions.</p>
+      <button class="primary" onclick="openView('assistant')">Open Assistant</button>
+    </div>
+    <div class="card">
+      <h3>◉ Marketing Studio</h3>
+      <p>Create marketing campaign ideas for your business.</p>
+      <button class="primary" onclick="openView('marketing')">Open Studio</button>
+    </div>
+    <div class="card">
+      <h3>Finance Centre</h3>
+      <p class="small">In development</p>
+    </div>
+    <div class="card">
+      <h3>Customer Manager</h3>
+      <p class="small">In development</p>
+    </div>
+  </div>
 </section>
 
-<section id="assistant" class="view">
-<div class="panel"><h2>AI Business Assistant</h2><p>Genuine AI connection is planned for a future release.</p><span class="status">IN DEVELOPMENT</span></div>
+<section class="view" id="assistant">
+  <h2 class="section-title">✦ AI Business Assistant</h2>
+  <p class="subtitle">Your business thinking partner.</p>
+
+  <div class="card">
+    <div class="chat-box" id="chatBox">
+      <div class="message assistant">Welcome to SELLORA Business Assistant!
+
+I can help you explore business ideas, marketing, planning, customer service and business growth.
+
+What would you like help with today?</div>
+    </div>
+    <div class="chat-row">
+      <input id="chatInput" placeholder="Ask a business question..." onkeydown="if(event.key==='Enter')sendMessage()">
+      <button class="primary" onclick="sendMessage()">Send</button>
+    </div>
+    <p class="small">Version 0.3 · Built-in business response engine · Not connected to a live AI model yet.</p>
+  </div>
 </section>
-<section id="finance" class="view">
-<div class="panel"><h2>Finance Centre</h2><p>Financial records, budgets and business reporting will be built here.</p><span class="status">IN DEVELOPMENT</span></div>
+
+<section class="view" id="marketing">
+  <h2 class="section-title">◉ Marketing Studio</h2>
+  <p class="subtitle">Create a marketing campaign for your business.</p>
+  <div class="card">
+    <label>Business or product name</label>
+    <input id="businessName" placeholder="Example: Nova Clothing">
+    <label>Social media platform</label>
+    <select id="platform">
+      <option>TikTok</option><option>Instagram</option>
+      <option>Facebook</option><option>LinkedIn</option><option>X</option>
+    </select>
+    <label>Campaign objective</label>
+    <select id="objective">
+      <option>Increase brand awareness</option>
+      <option>Promote a product</option>
+      <option>Attract new customers</option>
+      <option>Announce a launch</option>
+    </select>
+    <label>Target audience</label>
+    <input id="audience" placeholder="Who are you trying to reach?">
+    <label>Describe the business or product</label>
+    <textarea id="description" placeholder="Describe what makes it special..."></textarea>
+    <button class="primary" onclick="generateCampaign()">Generate Campaign</button>
+    <div id="campaignOutput"></div>
+  </div>
 </section>
-<section id="customers" class="view">
-<div class="panel"><h2>Customer Manager</h2><p>Customer records and relationship management will be built here.</p><span class="status">IN DEVELOPMENT</span></div>
+
+<section class="view" id="finance">
+  <div class="card"><h2>Finance Centre</h2><p>In development. Financial planning tools are coming soon.</p></div>
 </section>
-<section id="automation" class="view">
-<div class="panel"><h2>Automation Hub</h2><p>Business workflow automation will be built here.</p><span class="status">IN DEVELOPMENT</span></div>
+<section class="view" id="customers">
+  <div class="card"><h2>Customer Manager</h2><p>In development. Customer organisation tools are coming soon.</p></div>
 </section>
-<section id="analytics" class="view">
-<div class="panel"><h2>Analytics Dashboard</h2><p>Business performance and reporting will be built here.</p><span class="status">IN DEVELOPMENT</span></div>
+<section class="view" id="automation">
+  <div class="card"><h2>Automation Hub</h2><p>In development. Workflow tools are coming soon.</p></div>
+</section>
+<section class="view" id="analytics">
+  <div class="card"><h2>Analytics Dashboard</h2><p>In development. Business insights are coming soon.</p></div>
 </section>
 </main>
 </div>
 
 <script>
-const names={
-dashboard:"Dashboard",
-assistant:"AI Business Assistant",
-marketing:"Marketing Studio",
-finance:"Finance Centre",
-customers:"Customer Manager",
-automation:"Automation Hub",
-analytics:"Analytics Dashboard"
-};
-
-function openView(id){
-document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
-document.querySelectorAll(".nav").forEach(n=>n.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-document.querySelector('[data-view="'+id+'"]').classList.add("active");
-document.getElementById("heading").textContent=names[id];
+function openView(id,button){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  const view=document.getElementById(id);
+  if(view)view.classList.add('active');
+  if(button)button.classList.add('active');
+  const titles={
+    dashboard:'Business Dashboard',
+    assistant:'AI Business Assistant',
+    marketing:'Marketing Studio',
+    finance:'Finance Centre',
+    customers:'Customer Manager',
+    automation:'Automation Hub',
+    analytics:'Analytics Dashboard'
+  };
+  document.getElementById('pageTitle').textContent=titles[id]||'SELLORA';
+  window.scrollTo(0,0);
 }
 
-document.querySelectorAll("[data-view]").forEach(b=>{
-b.addEventListener("click",()=>openView(b.dataset.view));
-});
-document.querySelectorAll("[data-open]").forEach(b=>{
-b.addEventListener("click",()=>openView(b.dataset.open));
-});
-
-let campaigns=0;
-let latestCampaign="";
-
-document.getElementById("generate").addEventListener("click",()=>{
-const business=document.getElementById("business").value.trim();
-const product=document.getElementById("product").value.trim();
-const audience=document.getElementById("audience").value.trim();
-const platform=document.getElementById("platform").value;
-const objective=document.getElementById("objective").value;
-const tone=document.getElementById("tone").value;
-
-if(!business||!product||!audience){
-alert("Please complete the business name, audience and product description.");
-return;
+function addMessage(text,type){
+  const box=document.getElementById('chatBox');
+  const message=document.createElement('div');
+  message.className='message '+type;
+  message.textContent=text;
+  box.appendChild(message);
+  box.scrollTop=box.scrollHeight;
 }
 
-const openings={
-Professional:"Discover a smarter way to experience quality.",
-Luxury:"Experience something truly exceptional.",
-Friendly:"Something exciting is waiting for you!",
-Energetic:"It's time to make something amazing happen!",
-Creative:"Your next favourite discovery starts here."
-};
+function businessResponse(question){
+  const q=question.toLowerCase();
 
-const hashtags=business.replace(/[^a-zA-Z0-9]/g,"");
-latestCampaign=
-"CAMPAIGN: "+business+
-"\nPLATFORM: "+platform+
-"\nOBJECTIVE: "+objective+
-"\n\n"+openings[tone]+
-"\n\nIntroducing "+product+
-"\n\nCreated with "+audience+" in mind, "+business+
-" is ready to make an impression.\n\n"+
-"Discover more today. Follow "+business+
-" for updates and exciting announcements.\n\n"+
-"#"+hashtags+" #Business #DiscoverMore #"+platform.replace(/[^a-zA-Z0-9]/g,"");
+  if(q.includes('marketing')||q.includes('advertis')||q.includes('promot')){
+    return "MARKETING ADVICE\n\n1. Identify the people most likely to need your product.\n2. Explain the main benefit clearly.\n3. Create useful, interesting social media content.\n4. Keep your brand message consistent.\n5. Review which posts receive the most engagement.\n\nSELLORA tip: Use Marketing Studio to develop a campaign idea.";
+  }
 
-document.getElementById("output").textContent=latestCampaign;
-document.getElementById("result").style.display="block";
-campaigns++;
-document.getElementById("campaignCount").textContent=campaigns;
-});
+  if(q.includes('customer')||q.includes('client')){
+    return "CUSTOMER EXPERIENCE\n\n1. Understand what customers need.\n2. Make information about your products easy to find.\n3. Respond politely and clearly to questions.\n4. Ask for feedback.\n5. Use feedback to improve your service.\n\nA strong customer experience can help build trust.";
+  }
 
-document.getElementById("copy").addEventListener("click",async()=>{
-try{
-await navigator.clipboard.writeText(latestCampaign);
-document.getElementById("copy").textContent="Copied!";
-}catch(e){
-const area=document.createElement("textarea");
-area.value=latestCampaign;
-document.body.appendChild(area);
-area.select();
-document.execCommand("copy");
-area.remove();
-document.getElementById("copy").textContent="Copied!";
+  if(q.includes('idea')||q.includes('start a business')||q.includes('business idea')){
+    return "BUSINESS IDEA DEVELOPMENT\n\nStart with a problem people experience.\n\n1. Describe the problem.\n2. Identify who experiences it.\n3. Think of a useful solution.\n4. Research whether similar solutions exist.\n5. Test your idea on a small scale.\n6. Improve it using feedback.\n\nA good idea should solve a real problem.";
+  }
+
+  if(q.includes('plan')||q.includes('strategy')){
+    return "BUSINESS PLANNING\n\nA simple business plan should include:\n\n1. Business overview\n2. Products or services\n3. Target customers\n4. Marketing approach\n5. Costs and resources\n6. Goals and milestones\n7. How you will measure progress\n\nStart with realistic, measurable goals.";
+  }
+
+  if(q.includes('grow')||q.includes('growth')||q.includes('sales')){
+    return "BUSINESS GROWTH\n\nConsider these areas:\n\n1. Improve the value your product provides.\n2. Understand your target market.\n3. Make your brand recognisable.\n4. Improve customer experience.\n5. Explore suitable marketing channels.\n6. Measure results before changing your strategy.\n\nGrowth takes testing, learning and consistency.";
+  }
+
+  if(q.includes('name')||q.includes('brand')){
+    return "BRANDING ADVICE\n\nA strong brand name should be memorable, easy to pronounce and suitable for your audience.\n\nThink about:\n- Your brand's personality\n- The people you want to reach\n- What makes your business different\n- Whether the name is already being used\n\nBuild a consistent identity with colours, language and design.";
+  }
+
+  if(q.includes('hello')||q.includes('hi ')||q==='hi'||q==='hey'){
+    return "Hello! Welcome to SELLORA. What business challenge or idea would you like to explore today?";
+  }
+
+  return "BUSINESS GUIDANCE\n\nHere is a useful way to approach your question:\n\n1. Define the challenge clearly.\n2. Identify the result you want.\n3. List the resources available to you.\n4. Compare possible solutions.\n5. Choose a small, practical next step.\n6. Review the result and improve.\n\nCould you give me a little more detail about your business question so I can provide more focused guidance?";
 }
-});
+
+function sendMessage(){
+  const input=document.getElementById('chatInput');
+  const question=input.value.trim();
+  if(!question)return;
+  addMessage(question,'user');
+  input.value='';
+  const answer=businessResponse(question);
+  addMessage(answer,'assistant');
+}
+
+function generateCampaign(){
+  const name=document.getElementById('businessName').value.trim();
+  const platform=document.getElementById('platform').value;
+  const objective=document.getElementById('objective').value;
+  const audience=document.getElementById('audience').value.trim();
+  const description=document.getElementById('description').value.trim();
+  const output=document.getElementById('campaignOutput');
+
+  if(!name||!description){
+    output.textContent='Please enter a business name and product description.';
+    output.className='output';
+    return;
+  }
+
+  const campaign=
+    'CAMPAIGN: '+name+'\n\n'+
+    'PLATFORM: '+platform+'\n'+
+    'OBJECTIVE: '+objective+'\n'+
+    'AUDIENCE: '+(audience||'General audience')+'\n\n'+
+    'POST IDEA:\n'+
+    'Discover '+name+'! '+description+
+    ' Find out what makes us different. Follow us to learn more!\n\n'+
+    'HASHTAGS:\n#'+name.replace(/[^a-z0-9]/gi,'')+
+    ' #Business #Discover #NewProducts #Explore\n\n'+
+    'CONTENT TIP:\nUse a clear image or short video showing the product and its main benefit.';
+
+  output.className='output';
+  output.textContent=campaign;
+
+  const copy=document.createElement('button');
+  copy.className='primary';
+  copy.style.marginTop='12px';
+  copy.textContent='Copy Campaign';
+  copy.onclick=()=>{
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(campaign)
+        .then(()=>{copy.textContent='Copied!'})
+        .catch(()=>{copy.textContent='Copy unavailable'});
+    }else{
+      copy.textContent='Copy unavailable';
+    }
+  };
+  output.appendChild(document.createElement('br'));
+  output.appendChild(copy);
+}
 </script>
 </body>
 </html>
